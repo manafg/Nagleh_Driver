@@ -27,7 +27,7 @@ import GoOnline from '../../components/RequestComp/GoOnline';
 import ConfiremRequest from '../../components/RequestComp/ConfiremRequest/ConfiremRequest';
 import Payment from '../../components/RequestComp/Payment/index';
 import Rate from '../../components/RequestComp/Rate/index';
-
+import { DrawerActions } from 'react-navigation-drawer'
 
 
  // const SOCKET_URL = 'https://nagleh.app';
@@ -177,14 +177,10 @@ var { height, width } = Dimensions.get('window');
       longitudeDelta: 0.09921,
   }
     return (
-      <Drawer
-        ref={ref => {
-          this.drawer = ref;
-        }}
-        //content={<SideBar navigation={this.props.navigation} />}
-        onClose={() => this.drawer._root.close()}
-      >
         <View style={Container.container}>
+        <TouchableOpacity onPress={() => { this.props.navigation.dispatch(DrawerActions.toggleDrawer()) }} style={{ zIndex: 999, position: 'absolute', top: 40, left: 20 }}>
+                    <Image style={{ width: 55, height: 55 }} source={require('../../Image/menu.png')} />
+            </TouchableOpacity>
           <StatusBar barStyle="dark-content" />
           <MapView
              provider={PROVIDER_GOOGLE}
@@ -233,37 +229,8 @@ var { height, width } = Dimensions.get('window');
                 }
           
           </MapView>
-          <View
-            style={{
-              marginTop: 40,
-              position: "absolute",
-              flex: 1,
-              marginLeft: 15,
-              ...Platform.select({
-                  ios: {
-                   zIndex:9
-                  }
-                })
-            }}
-          >
-            <TouchableOpacity
-              style={{
-                position: "absolute",
-              }}
-              onPress={() => this.drawer._root.open()}
-            >
-              <Image
-                source={require("../../Image/menu.png")}
-                style={{
-                  width: 55,
-                  height: 55
-                }}
-              />
-            </TouchableOpacity>
-          </View>
          {this.renderTripComp()}
         </View>
-      </Drawer>
     );
   }
 }

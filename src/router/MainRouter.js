@@ -67,6 +67,11 @@ import SearchScreen from '../screens/SearchScreen'
 
     //drawer routes, you can add routes here for drawer or sidemenu
     const DrawerRoutes = {
+        Home: {
+            name: 'Home',
+            screen: createStackNavigator(AppStack, {initialRouteName: 'Home',headerMode: 'none'})
+            
+        },
         'Profile':{
             name: 'Profile',
             screen: createStackNavigator(AppStack, {initialRouteName: 'Profile',headerMode: 'none'})
@@ -79,6 +84,6 @@ import SearchScreen from '../screens/SearchScreen'
         DrawerRoutes,
         {
         drawerWidth: 180,
-        initialRouteName:'Profile',
+        initialRouteName:'Home',
         contentComponent: SideMenu,
       });
